@@ -13,15 +13,19 @@ public class ReqresApiPage {
     public static Response response;
 
     /**
-     * Sets the base URI for RestAssured requests by appending the provided endpoint
-     * to the base URL (GO_REST_BASE_URL).
+     * Sets the RestAssured base URI by combining the base URL with the specified endpoint.
      *
-     * @param endpoint The endpoint to be appended to the base URL.
+     * @param endpoint The endpoint to append to the base URL.
      */
     public void setEndpoint(String endpoint) {
         RestAssured.baseURI = BASE_URL + endpoint;
     }
 
+    /**
+     * Sends a GET request and returns the response.
+     *
+     * @return The response from the GET request.
+     */
     public Response sendGetRequest() {
         response = given()
                 .when()
@@ -32,6 +36,13 @@ public class ReqresApiPage {
         return response;
     }
 
+    /**
+     * Sends a GET request with a query parameter and returns the response.
+     *
+     * @param param The query parameter name.
+     * @param value The query parameter value.
+     * @return The response from the GET request.
+     */
     public Response sendGetRequestQueryParam(String param, String value) {
         response = given()
                 .queryParams(param, value)
@@ -43,6 +54,12 @@ public class ReqresApiPage {
         return response;
     }
 
+    /**
+     * Sends a GET request with multiple query parameters and returns the response.
+     *
+     * @param queryParams A map of query parameter names and values.
+     * @return The response from the GET request.
+     */
     public Response sendGetRequestQueryParams(Map<String, String> queryParams) {
         response = given()
                 .queryParams(queryParams)
@@ -54,6 +71,12 @@ public class ReqresApiPage {
         return response;
     }
 
+    /**
+     * Sends a POST request with a JSON body and returns the response.
+     *
+     * @param requestBody A map representing the JSON body of the POST request.
+     * @return The response from the POST request.
+     */
     public Response sendPostRequest(Map<String, String> requestBody) {
         response = given()
                 .header("Content-Type", "application/json")
@@ -66,6 +89,12 @@ public class ReqresApiPage {
         return response;
     }
 
+    /**
+     * Sends a PUT request with a JSON body and returns the response.
+     *
+     * @param requestBody A map representing the JSON body of the PUT request.
+     * @return The response from the PUT request.
+     */
     public Response sendPutRequest(Map<String, String> requestBody) {
         response = given()
                 .header("Content-Type", "application/json")
@@ -78,6 +107,11 @@ public class ReqresApiPage {
         return response;
     }
 
+    /**
+     * Sends a DELETE request and returns the response.
+     *
+     * @return The response from the DELETE request.
+     */
     public Response sendDeleteRequest() {
         response = given()
                 .header("Content-Type", "application/json")

@@ -32,3 +32,22 @@ dependencies {
 test {
     useJUnit()
 }
+
+tasks.register('reqresApiTest') {
+    dependsOn assemble, testClasses
+
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = sourceSets.test.runtimeClasspath // Menggunakan runtimeClasspath untuk test
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'html:reports/reqres-api-report.html',  // Nama laporan diganti menjadi reqres-api-report.html
+                    '--glue', 'steps',  // Pastikan ini mengarah pada step definition yang benar
+                    '--tags', '@Reqres',  // Pastikan tag @Reqres ada di file .feature
+                    'src/test/resources/features' // Pastikan direktori fitur yang benar
+            ]
+        }
+    }
+}
+

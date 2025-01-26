@@ -56,7 +56,6 @@ public class ReqresSteps {
     public void theValueOfShouldBe(String jsonPath, String jsonPathValue) {
         response = ReqresApiPage.response;
         String actualJsonPathValues = response.jsonPath().get(jsonPath).toString();
-        System.out.println(jsonPath + " = " + actualJsonPathValues);
         Assert.assertEquals(jsonPathValue, actualJsonPathValues);
     }
 
@@ -68,7 +67,6 @@ public class ReqresSteps {
         boolean allFieldsAreNotNull = data.stream().allMatch(
                 user ->
                         user.values().stream().allMatch(Objects::nonNull));
-        System.out.println(allFieldsAreNotNull + " hasil");
         assertTrue("Some fields in the user data are null", allFieldsAreNotNull);
     }
 
@@ -87,7 +85,6 @@ public class ReqresSteps {
     @And("the response body should be empty {string}")
     public void theResponseBodyShouldBeEmpty(String message) {
         String respondBody = response.getBody().asString();
-        System.out.println(respondBody);
         assertTrue(respondBody.contains(message));
     }
 
@@ -149,7 +146,6 @@ public class ReqresSteps {
         Map<String, Object> data = ReqresApiPage.response.jsonPath().getMap("data");
         for (String field : fieldArray) {
             field = field.trim();
-            System.out.println(field);
             assertTrue("Field " + field + " is missing in the response.", data.containsKey(field));
         }
     }

@@ -6,7 +6,7 @@ Feature: Get List of Users API
   So that I can view and interact with user data
 
   @ValidListUsers
-  Scenario: Verify successful retrieval of the user list
+  Scenario: Users list successful retrieval
     Given I set the GET request for endpoint "/api/users"
     When I send the GET request
     Then the response status code should be 200
@@ -18,7 +18,7 @@ Feature: Get List of Users API
     And the response body should match the JSON Schema "user_list_schema.json"
 
   @ValidListUsersQuery
-  Scenario: Verify successful retrieval of the user list with query parameters
+  Scenario: Users list successful retrieval with query parameters
     Given I set the GET request for endpoint "/api/users"
     When I send the GET request with query parameters:
       | key  | value |
@@ -32,7 +32,7 @@ Feature: Get List of Users API
     And the response body should match the JSON Schema "user_list_schema.json"
 
   @InvalidListUsersQuery
-  Scenario: Verify handling of invalid query parameters in user list request
+  Scenario: Users list successful retrieved with invalid query parameters
     Given I set the GET request for endpoint "/api/users"
     When I send the GET request with query parameters "page" and "9999"
     Then the response status code should be 200
