@@ -8,7 +8,7 @@ Feature: Create a user
   @ValidCreateUser
   Scenario Outline: Verify successful user creation
     Given I set the POST request for endpoint "/api/users"
-    And I set the request body with name "<name>" and job "<job>"
+    And I set the request body with "<name>" and "<job>"
     When I send the POST request
     Then the response status code should be 201
     And the value of "name" should be "<name>"
@@ -20,9 +20,9 @@ Feature: Create a user
       | neo      | the one |
 
   @InvalidCreateUser @BUG
-  Scenario Outline: Verify unsuccessful user creation due to missing required fields
+  Scenario Outline: Verify unsuccessful user creation due to empty required fields
     Given I set the POST request for endpoint "/api/users"
-    And I set the request body with name "<name>" and job "<job>"
+    And I set the request body with "<name>" and "<job>"
     When I send the POST request
     Then the response status code should be 201
     And the value of "name" should be "<name>"

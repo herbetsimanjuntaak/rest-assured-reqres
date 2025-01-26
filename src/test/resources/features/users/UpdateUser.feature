@@ -8,7 +8,7 @@ Feature: Update a user
   @ValidUpdateUser
   Scenario Outline: Verify successful user update
     Given I set the PUT request for endpoint "/api/users" and "<id>"
-    And I set the request body with name "<name>" and job "<job>"
+    And I set the request body with "<name>" and "<job>"
     When I send the PUT request
     Then the response status code should be 200
     And the value of "name" should be "<name>"
@@ -22,7 +22,7 @@ Feature: Update a user
   @InvalidUpdateUser @BUG
   Scenario Outline: Verify unsuccessful user update due to empty required fields
     Given I set the PUT request for endpoint "/api/users" and "<id>"
-    And I set the request body with name "<name>" and job "<job>"
+    And I set the request body with "<name>" and "<job>"
     When I send the PUT request
     Then the response status code should be 200
     And the value of "name" should be "<name>"

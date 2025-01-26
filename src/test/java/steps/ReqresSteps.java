@@ -37,12 +37,12 @@ public class ReqresSteps {
 
     @When("I send the GET request with query parameters {string} and {string}")
     public void iSendTheGETRequestWithQueryParametersAnd(String param, String value) {
-        response = reqresApiPage.sendGetRequestQueryParams(param, value);
+        response = reqresApiPage.sendGetRequestQueryParam(param, value);
     }
 
     @When("I send the GET request with query parameters:")
     public void iSendTheGETRequestWithQueryParameters(Map<String, String> queryParams) {
-        response = reqresApiPage.sendGetRequestQueryParamsGPT(queryParams);
+        response = reqresApiPage.sendGetRequestQueryParams(queryParams);
     }
 
     @Then("the response status code should be {int}")
@@ -113,7 +113,7 @@ public class ReqresSteps {
         this.requestBody = requestBody;
     }
 
-    @And("I set the request body with name {string} and job {string}")
+    @And("I set the request body with {string} and {string}")
     public void iSetTheRequestBodyWithNameAndJob(String name, String job) {
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("name", name);
@@ -152,5 +152,19 @@ public class ReqresSteps {
             System.out.println(field);
             assertTrue("Field " + field + " is missing in the response.", data.containsKey(field));
         }
+    }
+
+    @And("the response body should contain {string}")
+    public void theResponseBodyShouldContain(String text) {
+        String respondBody = response.getBody().asString();
+        Assert.assertTrue(respondBody.contains(text));
+    }
+
+    @And("I set the request body with email {string} and {string}")
+    public void iSetTheRequestBodyWithEmailAnd(String arg0, String arg1) {
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("email", arg0);
+        requestBody.put("password", arg1);
+        this.requestBody = requestBody;
     }
 }

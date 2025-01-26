@@ -20,7 +20,6 @@ public class ReqresApiPage {
      */
     public void setEndpoint(String endpoint) {
         RestAssured.baseURI = BASE_URL + endpoint;
-        System.out.println(RestAssured.baseURI);
     }
 
     public Response sendGetRequest() {
@@ -33,7 +32,7 @@ public class ReqresApiPage {
         return response;
     }
 
-    public Response sendGetRequestQueryParams(String param, String value) {
+    public Response sendGetRequestQueryParam(String param, String value) {
         response = given()
                 .queryParams(param, value)
                 .when()
@@ -44,7 +43,7 @@ public class ReqresApiPage {
         return response;
     }
 
-    public Response sendGetRequestQueryParamsGPT(Map<String, String> queryParams) {
+    public Response sendGetRequestQueryParams(Map<String, String> queryParams) {
         response = given()
                 .queryParams(queryParams)
                 .when()
