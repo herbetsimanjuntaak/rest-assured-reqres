@@ -2,10 +2,6 @@
 
 Repository for Learning Software Quality Assurance - API Automation Using RestAssured with Cucumber
 
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/8d9750ec-ddb9-4a01-9863-37b5ecd25f2f" alt="cucumber" width="500" style="margin-left: 10px;">
-</p>
-
 This is a personal project focused on practicing functional API automation testing on the Reqres API using RestAssured
 with Cucumber. The goal is to enhance skills in API End-to-End (E2E) testing, covering critical API workflows such as
 creating a user, retrieving user details, updating user information, deleting a user, and validating error responses.
