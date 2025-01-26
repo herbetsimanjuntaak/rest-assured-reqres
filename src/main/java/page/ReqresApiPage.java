@@ -6,7 +6,6 @@ import io.restassured.response.Response;
 import java.util.Map;
 
 import static helper.Endpoint.BASE_URL;
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
 public class ReqresApiPage {
@@ -21,6 +20,7 @@ public class ReqresApiPage {
      */
     public void setEndpoint(String endpoint) {
         RestAssured.baseURI = BASE_URL + endpoint;
+        System.out.println(RestAssured.baseURI);
     }
 
     public Response sendGetRequest() {

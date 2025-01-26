@@ -27,7 +27,6 @@ public class ReqresSteps {
 
     @Given("I set the GET request for endpoint {string}")
     public void iSetTheGETRequestForEndpoint(String endpoint) {
-        System.out.println();
         reqresApiPage.setEndpoint(endpoint);
     }
 
@@ -38,7 +37,7 @@ public class ReqresSteps {
 
     @When("I send the GET request with query parameters {string} and {string}")
     public void iSendTheGETRequestWithQueryParametersAnd(String param, String value) {
-        response = reqresApiPage.sendGetRequestQueryParams(param,value);
+        response = reqresApiPage.sendGetRequestQueryParams(param, value);
     }
 
     @When("I send the GET request with query parameters:")
@@ -57,7 +56,7 @@ public class ReqresSteps {
     public void theValueOfShouldBe(String jsonPath, String jsonPathValue) {
         response = ReqresApiPage.response;
         String actualJsonPathValues = response.jsonPath().get(jsonPath).toString();
-        System.out.println(jsonPath+" = "+actualJsonPathValues);
+        System.out.println(jsonPath + " = " + actualJsonPathValues);
         Assert.assertEquals(jsonPathValue, actualJsonPathValues);
     }
 
@@ -68,13 +67,13 @@ public class ReqresSteps {
 
         boolean allFieldsAreNotNull = data.stream().allMatch(
                 user ->
-                user.values().stream().allMatch(Objects::nonNull));
-        System.out.println(allFieldsAreNotNull+" hasil");
+                        user.values().stream().allMatch(Objects::nonNull));
+        System.out.println(allFieldsAreNotNull + " hasil");
         assertTrue("Some fields in the user data are null", allFieldsAreNotNull);
     }
 
-    @And("the {string} array should be empty")
-    public void theArrayShouldBeEmpty(String jsonPath) {
+    @And("the {string} array in the response body should be empty")
+    public void theArrayInTheResponseBodyShouldBeEmpty(String jsonPath) {
         int size = response.jsonPath().getList(jsonPath).size();
         Assert.assertEquals("The " + jsonPath + " array is not empty", 0, size);
     }
@@ -82,7 +81,7 @@ public class ReqresSteps {
     @And("the response body should be empty")
     public void theResponseBodyShouldBeEmpty() {
         String responseBody = response.getBody().asString();
-        Assert.assertEquals("Response body is not empty","", responseBody);
+        Assert.assertEquals("Response body is not empty", "", responseBody);
     }
 
     @And("the response body should be empty {string}")
@@ -129,12 +128,12 @@ public class ReqresSteps {
 
     @Given("I set the PUT request for endpoint {string} and {string}")
     public void iSetThePUTRequestForEndpointAnd(String endpoint, String id) {
-        reqresApiPage.setEndpoint(endpoint+"/"+id);
+        reqresApiPage.setEndpoint(endpoint + "/" + id);
     }
 
     @Given("I set the DELETE request for endpoint {string} and {string}")
     public void iSetTheDELETERequestForEndpointAnd(String endpoint, String id) {
-        reqresApiPage.setEndpoint(endpoint+"/"+id);
+        reqresApiPage.setEndpoint(endpoint + "/" + id);
 
     }
 
@@ -144,4 +143,14 @@ public class ReqresSteps {
     }
 
 
+    @And("the response body should have valid fields {string}")
+    public void theResponseBodyShouldHaveValidFields(String fields) {
+        String[] fieldArray = fields.split(",");
+        Map<String, Object> data = ReqresApiPage.response.jsonPath().getMap("data");
+        for (String field : fieldArray) {
+            field = field.trim();
+            System.out.println(field);
+            assertTrue("Field " + field + " is missing in the response.", data.containsKey(field));
+        }
+    }
 }
