@@ -42,7 +42,8 @@ tasks.register('reqresApiTest') {
             classpath = sourceSets.test.runtimeClasspath // Menggunakan runtimeClasspath untuk test
             args = [
                     '--plugin', 'pretty',
-                    '--plugin', 'html:reports/reqres-api-report.html',  // Nama laporan diganti menjadi reqres-api-report.html
+                    '--plugin', 'html:target/reqres-api-reports.html',  // Nama laporan diganti menjadi reqres-api-report.html
+                    '--plugin', 'json:target/reqres-api-reports.json',
                     '--glue', 'steps',  // Pastikan ini mengarah pada step definition yang benar
                     '--tags', '@Reqres',  // Pastikan tag @Reqres ada di file .feature
                     'src/test/resources/features' // Pastikan direktori fitur yang benar

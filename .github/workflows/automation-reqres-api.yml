@@ -1,4 +1,4 @@
-name: Demo Blaze Automation
+name: Reqres API Automation
 
 
 # EVENT Trigger / Kapan Action-nya jalan
@@ -14,7 +14,7 @@ permissions:
   id-token: write
 
 jobs:
-  automation-demoBlaze:
+  automation-reqres-api:
     runs-on: ubuntu-latest # Running on Virtual machine
 
 
@@ -36,28 +36,28 @@ jobs:
           chrome-version: latest # Ganti dengan 'stable' untuk lebih stabil
 
 
-      #set up dependencies
-      - name: Build with Maven
-        run: mvn clean install -DskipTests  # Clean and install dependencies (without running tests)
+      - name: Build with Gradle
+        run: |
+          chmod +x gradlew  # Make gradlew executable
+          ./gradlew build   # Run the build task before tests
 
-      # Execute test
-      - name: Execute Test
-        run: mvn test
+      - name: Run Tests
+        run: ./gradlew clean test  # Run tests after the build step
 
 
       # Upload Test Results
       - name: Archive Test Result
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.3.0
         if: always() #always() # success() , failure(), canceled()
         with:
-          name: Cucumber Report
-          path: target/cucumber-reports.html  # Path to test reports
+          name: Cucumber Reqres Report
+          path: target/reqres-api-reports.html  # Path to test reports
 
 
-    # # Deploy to Github Pages
-    #  - name: Deploy report to Github Pages
-    #    if: always()
-    #    uses: peaceiris/actions-gh-pages@v3.7.3
-    #    with:
-    #     PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-    #     PUBLISH_DIR: reports
+     # Deploy to Github Pages
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3.7.3
+        with:
+         PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+         PUBLISH_DIR: reports

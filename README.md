@@ -1,28 +1,32 @@
 # API Automation Testing with Reqres API
 
-Repository for Learning Software Quality Assurance - API Automation Using RestAssured with Cucumber
+This repository is dedicated to learning Software Quality Assurance (SQA) through API automation testing using **RestAssured** and **Cucumber**.
 
-This is a personal project focused on practicing functional API automation testing on the Reqres API using RestAssured
-with Cucumber. The goal is to enhance skills in API End-to-End (E2E) testing, covering critical API workflows such as
-creating a user, retrieving user details, updating user information, deleting a user, and validating error responses.
+This personal project focuses on practicing functional API automation testing on the **Reqres API**.
+It aims to enhance skills in API End-to-End (E2E) testing by covering essential workflows,
+such as creating users, retrieving user details, updating user information, deleting users,
+and validating error responses.
 
-The project leverages:
+## 🚀 Project Highlights
 
-- **Cucumber** for structuring test scenarios in Gherkin syntax
-- **RestAssured** for making HTTP requests and handling API responses
-- **JUnit** for managing the test framework
-- **JSON Schema Validator** for ensuring response structure compliance.
+The project automates various API testing scenarios with the **Reqres API**. Key functionalities tested include:
 
-## 🚀 Project Overview
-
-This project automates various API testing scenarios using the Reqres API. Key areas tested include:
-
-- **Users**: Operations like listing users, fetching single users, creating, updating, and deleting users.
-- **Resource**: Listing resources, fetching single resources, and handling "not found" cases.
-- **Login**: Testing both successful and unsuccessful login attempts.
-- **Register**: Validating successful and unsuccessful user registrations.
+- **Users**:
+    - Listing users
+    - Fetching single user details
+    - Creating, updating, and deleting users
+- **Resource**:
+    - Listing available resources
+    - Fetching single resources
+    - Handling "not found" cases
+- **Login**:
+    - Validating successful and unsuccessful login attempts
+- **Register**:
+    - Testing successful and unsuccessful user registrations
 
 ## ⚙️ Technologies Used
+
+This project leverages the following tools and technologies:
 
 - **💻 Java**: The primary programming language used for the project.
 - **✅ JUnit**: A framework for unit testing, version 4.13.2.
@@ -37,12 +41,22 @@ This project automates various API testing scenarios using the Reqres API. Key a
 
 ## 📂 Project Structure
 
-- **`src/test/resources`**: Contains the Gherkin feature files for Cucumber test scenarios and JSON schema files for
-  validating API responses.
-- **`src/test/java/steps`**: Contains the step definition files and test runners for Cucumber.
-- **`src/main/java`**: Contains utility classes, page objects, and core logic for the tests.
+The repository follows a well-organized structure to enhance readability and maintainability:
 
-## 🛠️ Installation Instructions
+- **`src/test/resources`**: Contains:
+    - Gherkin feature files for defining test scenarios.
+    - JSON schema files for response validation.
+- **`src/test/java/steps`**: Includes:
+    - Step definitions for Cucumber.
+    - Test runners.
+- **`src/main/java`**: Holds:
+    - Utility classes.
+    - Core logic for automation.
+    - Page Object Models.
+
+## 🛠️ Installation and Usage
+
+To get started with this project, follow these steps:
 
 1. **Clone the repository**:
    ```bash
@@ -51,7 +65,7 @@ This project automates various API testing scenarios using the Reqres API. Key a
    ```
    cd rest-assured-reqres
    ```
-3. **Install dependencies**:
+3. **Build the project and install dependencies**:
    ```
    ./gradlew build
    ```
@@ -62,29 +76,17 @@ This project automates various API testing scenarios using the Reqres API. Key a
 
 ## 📝 Test Reporting
 
-After running the tests, the reports will be available at the following locations:
+After executing the tests, you can find the reports in the following locations:
 
 - **HTML Report**: View detailed test results in an easy-to-read format at
-    - `reports/reqres-api-report.html`.
+    - **Path**:`target/reqres-api-report.html`.
+    - Provides a detailed summary of test results.
 
 - **JSON Report**: Access raw test results data in JSON format at
-    - `reports/reqres-api-report.json`
-
-These reports will provide insights into test execution, including passed/failed tests, test durations, and more.
+    - **Path**:`target/reqres-api-report.json`
+    - Contains raw test execution data for further analysis.
 
 ## 🔗 Resources
 
 - **Reqres API**: [Visit Website](https://reqres.in/)
 - **Test Case Documentation**: [Reqres API Test Cases](https://docs.google.com/spreadsheets/d/1yWwq_G2lcTAUBSiyaBKEvAsQ1SbVBAAyDtkpSzitgQA/edit?usp=sharing)
-
-## 🤝 Contributing
-
-We welcome contributions to improve the project! To contribute:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature-name`).
-3. Make your changes and commit them (`git commit -am 'Add new feature'`).
-4. Push to your branch (`git push origin feature/your-feature-name`).
-5. Create a pull request with a clear description of the changes.
-   🏃‍♂️
-   Please ensure your code follows the project’s coding standards and includes appropriate tests.

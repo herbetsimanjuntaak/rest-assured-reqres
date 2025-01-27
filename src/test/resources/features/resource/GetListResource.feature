@@ -10,7 +10,6 @@ Feature: List Resources
     Given I set the GET request for endpoint "/api/unknown"
     When I send the GET request
     Then the response status code should be 200
-    Then the response status code should be 200
     And the value of "page" should be "1"
     And the value of "per_page" should be "6"
     And the value of "total" should be "12"
@@ -35,8 +34,8 @@ Feature: List Resources
 
   @InvalidListResourcesQuery
   Scenario: Verify unsuccessful retrieval with an invalid page number
+    Given I set the GET request for endpoint "/api/unknown"
     When I send the GET request with query parameters "page" and "9999"
-    When I send the GET request
     Then the response status code should be 200
     And the "data" array in the response body should be empty
 
