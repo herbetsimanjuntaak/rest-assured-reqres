@@ -1,0 +1,63 @@
+name: Demo Blaze Automation
+
+
+# EVENT Trigger / Kapan Action-nya jalan
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  automation-demoBlaze:
+    runs-on: ubuntu-latest # Running on Virtual machine
+
+
+    steps:
+      - uses: actions/checkout@v3 # Checkout the repository
+
+      # set up java
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin' # Alternatif: 'adoptopenjdk', 'zulu'
+
+
+      # install browser
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1.7.2
+        with:
+          chrome-version: latest # Ganti dengan 'stable' untuk lebih stabil
+
+
+      #set up dependencies
+      - name: Build with Maven
+        run: mvn clean install -DskipTests  # Clean and install dependencies (without running tests)
+
+      # Execute test
+      - name: Execute Test
+        run: mvn test
+
+
+      # Upload Test Results
+      - name: Archive Test Result
+        uses: actions/upload-artifact@v3
+        if: always() #always() # success() , failure(), canceled()
+        with:
+          name: Cucumber Report
+          path: target/cucumber-reports.html  # Path to test reports
+
+
+    # # Deploy to Github Pages
+    #  - name: Deploy report to Github Pages
+    #    if: always()
+    #    uses: peaceiris/actions-gh-pages@v3.7.3
+    #    with:
+    #     PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+    #     PUBLISH_DIR: reports
